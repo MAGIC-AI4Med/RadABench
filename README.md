@@ -8,6 +8,8 @@ The official code inplementation for "Can Modern LLMs Act as Agent Cores in Radi
 
 [ArXiv Version](https://arxiv.org/pdf/2412.09529)
 
+[RadABench-Data](https://huggingface.co/datasets/QiaoyuZheng/RadABench-Data)
+
 This paper aims to investigate the pre-requisite question for building concrete radiology agents which is, **"Can modern LLMs act as agent cores in radiology environments?"**
 
 To investigate it, we introduce **RadABench** with three-fold contributions: 
