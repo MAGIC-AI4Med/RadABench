@@ -6,7 +6,7 @@
 
 The official code inplementation for "Can Modern LLMs Act as Agent Cores in Radiology Environments?"
 
-[ArXiv Version](https://arxiv.org/abs/2312.16151)
+[ArXiv Version](https://arxiv.org/pdf/2412.09529)
 
 This paper aims to investigate the pre-requisite question for building concrete radiology agents which is, **"Can modern LLMs act as agent cores in radiology environments?"**
 
