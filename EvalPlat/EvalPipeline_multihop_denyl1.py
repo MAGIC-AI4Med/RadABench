@@ -1,25 +1,14 @@
-import importlib
-import requests
-from requests.exceptions import ProxyError, ConnectionError
 import json
-import numpy as np
-import os
-import pandas as pd
-from tqdm import tqdm
-import re
-import traceback
-import random
-import ast
-from openai import OpenAI
-import inspect
-import Utils
-from Utils.utils import initial_prompt, select_elements, extract_call_content_deny, find_key_in_nested_dict, log_to_file, prepare_decomposition_prompt_deny, prepare_step_prompt_deny, prepare_conclusion_prompt, prepare_valid_prompt, initialize_reserved_dict, update_reserved_dict, validate_and_execute_tool, saveINFO, handle_exception, send_request_gpt, send_request_claude, send_request_gemini, send_request_o1, send_request_gpt4o, send_request_llama
-from Utils import tooluse
-from tooluse import ToolManager_IO
-import openai
 import time
-import pickle
 import torch
+import inspect
+from tqdm import tqdm
+from openai import OpenAI
+from Utils.tooluse import ToolManager_IO
+from requests.exceptions import ProxyError, ConnectionError
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+from Utils.utils import initial_prompt, select_elements, extract_call_content_deny, find_key_in_nested_dict, log_to_file, prepare_decomposition_prompt_deny, prepare_step_prompt_deny, prepare_conclusion_prompt, prepare_valid_prompt, initialize_reserved_dict, update_reserved_dict, validate_and_execute_tool, saveINFO, handle_exception, send_request_gpt, send_request_claude, send_request_gemini, send_request_o1, send_request_gpt4o, send_request_llama
 
 deny_map = {"012": 'Anatomy Classifier', "013": 'Modality Classifier', "014": 'Disease Judge', "0123": 'Organ Segmentor', "01235": 'Anomaly Detector', "0126": 'Organ Biomarker Quantifier',
             "0136": 'Anomaly Biomarker Quantifier', "01348": 'Anomaly Detector', "0123568": 'Disease Judge', "01235678": 'Report Generator', "012356789": 'Treatment Recommender'}
@@ -94,23 +83,24 @@ class My_Chatbot:
             self.chat_func = self.llama_chat_function
             self.base_path = "LLAMA/multiIDenyl1"
 
-        if chatbot_type == "Mistral":
+        if chatbot_type == "Mixtral":
             self.device = "cuda" if torch.cuda.is_available() else "cpu"
-            self.model_or_client = pipeline("text-generation", model=model_path_or_api,device=self.device)
-            # self.model_or_client = AutoModelForCausalLM.from_pretrained(model_path_or_api)
-            # self.model_or_client.to(self.device)
-            # self.tokenizer = AutoTokenizer.from_pretrained(model_path_or_api)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_path_or_api)
+            self.model_or_client = AutoModelForCausalLM.from_pretrained(model_path_or_api, device_map="auto", torch_dtype=torch.float16,attn_implementation="sdpa")
             self.chat_func = self.Mistral_chat_function
+            self.base_path = "Mixtral/multiDenyl1"
         
         if chatbot_type == "Qwen": 
-            self.device = "cuda" if torch.cuda.is_available() else "cpu"  
+            self.device = "cuda" if torch.cuda.is_available() else "cpu"
             self.model_or_client = AutoModelForCausalLM.from_pretrained(
                 model_path_or_api,
-                torch_dtype="auto",
+                torch_dtype=torch.float16,
+                device_map = 'auto',
+                attn_implementation="sdpa"
             )
-            self.model_or_client.to(self.device)
             self.tokenizer = AutoTokenizer.from_pretrained(model_path_or_api)
             self.chat_func = self.Qwen_chat_function
+            self.base_path = "Qwen2.5/multiDenyl1"
             
         with open("Utils/entity_dict.json", "r") as f:
             self.entity_dict = json.load(f)
@@ -153,14 +143,30 @@ class My_Chatbot:
         return output
 
     def Mistral_chat_function(self, messages):
+        inputs = self.tokenizer.apply_chat_template(messages, return_tensors="pt").to(self.model_or_client.device)
+        outputs = self.model_or_client.generate(inputs, max_new_tokens=512)
+        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+    
+    
+    def Qwen_chat_function(self, messages):
+        
+        text = self.tokenizer.apply_chat_template(
+            messages,
+            tokenize=False,
+            add_generation_prompt=True
+        )
+        model_inputs = self.tokenizer([text], return_tensors="pt").to(self.model_or_client.device)
 
-        if messages[0]["role"] == "system":
-            messages[1]["content"] = messages[0]["content"] + '\n\n' + messages[1]["content"]
-            messages = messages[1:]
-        response = self.model_or_client(messages, max_new_tokens=500)[0]['generated_text']
-        print(response[-1]['content'])
-        #input()
-        return response[-1]['content']
+        generated_ids = self.model_or_client.generate(
+            model_inputs.input_ids,
+            max_new_tokens=512
+        )
+        generated_ids = [
+            output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
+        ]
+
+        response = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
+        return response
     
     def main_work(self, case_json_dir = "CASE/combined_casesV3_qa_Subset.json"):
         with open(case_json_dir, "r") as f:
