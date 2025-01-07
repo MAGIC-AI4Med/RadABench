@@ -1,9 +1,6 @@
-# RadABench (continuing ...)
+<h1>RadABench (continuing ...)</h1>
 
-<div align="center">
-  <img src="./assets/RadA.png" width="200"/> <div align="center"></div>
-</div>
-
+<img src="./assets/RadA.png" alt="logo" style="height:60px; vertical-align: middle;margin-bottom: -10px;"> 
 The official code inplementation for "Can Modern LLMs Act as Agent Cores in Radiology Environments?"
 
 [Paper (arXiv)](https://arxiv.org/pdf/2412.09529)
