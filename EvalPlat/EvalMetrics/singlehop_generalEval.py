@@ -61,7 +61,7 @@ map_dict = {
     "012356789": ["Anatomy Classifier", "Modality Classifier", "Organ Segmentor", "Anomaly Detector", "Disease Inferencer", "Organ Biomarker Quantifier", "Anomaly Biomarker Quantifier", "Indicator Evaluator", "Report Generator", "Treatment Recommender"],
 }
 
-# file_path = "/remote-home/qiaoyuzheng/MedAgents/AgentCoreV3/GPT4/General_backup/logouts/0/012.txt"  # Replace with your file path
+# file_path = "Outputs/<model>/General/logouts/0/012.txt"
 # result = extract_tools(file_path)
 # print(result)
 

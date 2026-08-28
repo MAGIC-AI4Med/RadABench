@@ -1,0 +1,187 @@
+
+==================================================
+=== Tool Description for TOOL1 ===
+Name: TOOL1
+Category: Anatomy Classifier
+Ability: Determine the anatomy of the Image.
+Property: Universal Anatomy Classifier
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Anatomy$']
+Performance: Score from 0.95 to 0.95, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL2 ===
+Name: TOOL2
+Category: Modality Classifier
+Ability: Determine the modality of the Image.
+Property: Universal Modality Classifier
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Modality$']
+Performance: Score from 0.95 to 0.95, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL3 ===
+Name: TOOL3
+Category: Organ Segmentor
+Ability: Given the modality and anatomy, segment all organs in the Image.
+Property: Universal Organ Segmentor
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL4 ===
+Name: TOOL4
+Category: Organ Segmentor
+Ability: Given the Head and Neck X-ray Image, segment the organs.
+Property: Organ Segmentor only suitable for Head and Neck X-ray image
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL5 ===
+Name: TOOL5
+Category: Anomaly Detector
+Ability: Given the modality and anatomy, determine the location and type of abnormality.
+Property: Universal Anomaly Detector
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL6 ===
+Name: TOOL6
+Category: Anomaly Detector
+Ability: Given the Head and Neck X-ray Image, determine the location and type of abnormality.
+Property: Anomaly Detector only suitable for Head and Neck X-ray image
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL7 ===
+Name: TOOL7
+Category: Disease Diagnoser
+Ability: Given the modality and anatomy, diagnose the disease.
+Property: Universal Disease Diagnoser
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.7 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL8 ===
+Name: TOOL8
+Category: Disease Diagnoser
+Ability: Given the Head and Neck X-ray Image, diagnose the disease.
+Property: Disease Diagnoser only suitable for Head and Neck X-ray image
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL9 ===
+Name: TOOL9
+Category: Biomarker Quantifier
+Ability: Measure the organ biomarker of the Image.
+Property: Universal Organ Biomarker Quantifier
+Compulsory Input: ['$Image$', '$OrganObject$', '$OrganMask$']
+Optional Input: ['$OrganDim$']
+Output: ['$OrganDim$', '$OrganQuant$']
+Performance: Score from 0.75 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL10 ===
+Name: TOOL10
+Category: Biomarker Quantifier
+Ability: Measure the anomaly biomarker of the Image.
+Property: Universal Anomaly Biomarker Quantifier
+Compulsory Input: ['$Image$', '$AnomalyObject$', '$AnomalyMask$']
+Optional Input: ['$AnomalyDim$']
+Output: ['$AnomalyDim$', '$AnomalyQuant$']
+Performance: Score from 0.75 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL11 ===
+Name: TOOL11
+Category: Indicator Evaluator
+Ability: Evaluate the indicator based on the patient's Information and organ segmentation
+Property: Universal Organ Indicator Evaluator
+Compulsory Input: ['$Image$', '$Information$', '$IndicatorName$', '$OrganObject$', '$OrganDim$', '$OrganQuant$']
+Optional Input: []
+Output: ['$IndicatorValue$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL12 ===
+Name: TOOL12
+Category: Indicator Evaluator
+Ability: Evaluate the indicator based on the patient's Information and anomaly detection
+Property: Universal Anomaly Indicator Evaluator
+Compulsory Input: ['$Image$', '$Information$', '$IndicatorName$', '$AnomalyObject$', '$AnomalyDim$', '$AnomalyQuant$']
+Optional Input: []
+Output: ['$IndicatorValue$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL13 ===
+Name: TOOL13
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis MRI Image, generate a basic radiology report.
+Property: Report Generator only suitable for Abdomen and Pelvis MRI image with Image Only
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL14 ===
+Name: TOOL14
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis MRI Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Property: Report Generator only suitable for Abdomen and Pelvis MRI image with Text and Mask
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL15 ===
+Name: TOOL15
+Category: Report Generator
+Ability: Given the Chest X-ray Image, generate a basic radiology report.
+Property: Report Generator only suitable for Chest X-ray image with Image Only
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL16 ===
+Name: TOOL16
+Category: Report Generator
+Ability: Given the Chest X-ray Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Property: Report Generator only suitable for Chest X-ray image with Text and Mask
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL17 ===
+Name: TOOL17
+Category: Treatment Recommender
+Ability: Recommend treatment based on the patient's Information and Report
+Property: Universal Treatment Recommender
+Compulsory Input: ['$Information$', '$Report$']
+Optional Input: ['$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Treatment$']
+Performance: Score from 0.8 to 0.98, increases with optional inputs

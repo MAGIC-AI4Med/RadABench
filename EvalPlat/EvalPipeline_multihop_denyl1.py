@@ -1,110 +1,45 @@
+import argparse
+import os
 import json
 import time
-import torch
 import inspect
 from tqdm import tqdm
-from openai import OpenAI
 from Utils.tooluse import ToolManager_IO
+from Utils.llm_client import LLMClient, available_models
+from Prompting import compose, parse_strategy_list
 from requests.exceptions import ProxyError, ConnectionError
-from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from Utils.utils import initial_prompt, select_elements, extract_call_content_deny, find_key_in_nested_dict, log_to_file, prepare_decomposition_prompt_deny, prepare_step_prompt_deny, prepare_conclusion_prompt, prepare_valid_prompt, initialize_reserved_dict, update_reserved_dict, validate_and_execute_tool, saveINFO, handle_exception, send_request_gpt, send_request_claude, send_request_gemini, send_request_o1, send_request_gpt4o, send_request_llama
+from Utils.utils import initial_prompt, select_elements, extract_call_content_deny, find_key_in_nested_dict, log_to_file, prepare_decomposition_prompt_deny, prepare_step_prompt_deny, prepare_conclusion_prompt, prepare_valid_prompt, initialize_reserved_dict, update_reserved_dict, validate_and_execute_tool, saveINFO, handle_exception
 
 deny_map = {"012": 'Anatomy Classifier', "013": 'Modality Classifier', "014": 'Disease Judge', "0123": 'Organ Segmentor', "01235": 'Anomaly Detector', "0126": 'Organ Biomarker Quantifier',
             "0136": 'Anomaly Biomarker Quantifier', "01348": 'Anomaly Detector', "0123568": 'Disease Judge', "01235678": 'Report Generator', "012356789": 'Treatment Recommender'}
 
 class My_Chatbot:
-    def __init__(self, chatbot_type = "GPT-4", model_path_or_api = "sk-Be86e11ZdWdO0IHOGr4cLVutkROL6xpwRBPoEEViVLU20SzA"):
-        #Init Part
-        if chatbot_type == "GPT-4":
-            self.model_or_client = OpenAI(
-                base_url="https://api.gpts.vin/v1",
-                api_key="sk-tPphc4JsztVS3EnOSFYcTMEu4VTD5lS8iqFBTqS2gOTkNuwG"
-            )
-            self.tokenizer = None
-            self.chat_func = self.GPT_chat_function
-            self.base_path = "GPT4//multiDenyl1"
-        
-        if chatbot_type == "GPT-4o":
-            self.model_or_client = OpenAI(
-                base_url="https://api.gpts.vin/v1",
-                api_key="sk-tPphc4JsztVS3EnOSFYcTMEu4VTD5lS8iqFBTqS2gOTkNuwG"
-            )
-            self.tokenizer = None
-            self.chat_func = self.GPT4o_chat_function
-            self.base_path = "GPT4o//multiDenyl1"
+    """Agent core wrapper: one LLM, one simulated tool set, one output tree.
 
-        if chatbot_type == "o1-mini":
-            self.model_or_client = OpenAI(
-                base_url="https://api.gpts.vin/v1",
-                api_key="sk-tPphc4JsztVS3EnOSFYcTMEu4VTD5lS8iqFBTqS2gOTkNuwG"
-            )
-            self.tokenizer = None
-            self.chat_func = self.o1_chat_function
-            self.base_path = "o1//multiDenyl1"
-        
-        if chatbot_type == "Claude-3.5":
-            self.model_or_client = OpenAI( 
-                base_url="https://chat.cloudapi.vip/v1/",
-                api_key="sk-7B4k9bjiYPIkawKQaPWNw7eqnt8oWtJUoKKJutYJWsKK8atJ",
-                default_headers={"x-foo": "true"}
-            )
-            self.tokenizer = None
-            self.chat_func = self.Claude_chat_function
-            self.base_path = "Claude//multiDenyl1"
+    The model is chosen by alias from ``Configs/models.yaml``; credentials come
+    from the environment. See ``.env.example`` for the variables each provider
+    needs.
+    """
 
-        if chatbot_type == "Gemini-1.5":
-            Baseurl = "https://api.claudeshop.top"
-            Skey = "sk-YKIsf5FHQhY3NdQW9f6944Dd2d5742049d7cDb398e66B862"
+    RUN_TAG = "multiDenyl1"
 
-            self.proxy_url = Baseurl + "/v1/chat/completions"
-            self.headers = {
-                'Accept': 'application/json',
-                'Authorization': f'Bearer {Skey}',
-                'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-                'Content-Type': 'application/json'
-            }
-            self.tokenizer = None
-            self.chat_func = self.Gemini_chat_function
-            self.base_path = "Gemini//multiDenyl1"
+    def __init__(self, model = "claude-sonnet-4.5", model_path = None, output_root = "Outputs",
+                 strategies = ""):
+        self.llm = LLMClient(model, model_path = model_path)
+        self.chat_func = self.llm.chat
+        # Prompting strategies are opt-in; "" reproduces the paper's
+        # baseline condition, "all" its integrated condition.
+        self.strategy = compose(strategies)
+        self.system_prompt = self.strategy.system_prompt(initial_prompt)
+        run_tag = self.RUN_TAG + (f"+{'+'.join(parse_strategy_list(strategies))}" if strategies else "")
+        self.base_path = os.path.join(output_root, model, run_tag)
+        os.makedirs(self.base_path, exist_ok = True)
 
-        if chatbot_type == "LLAMA":
-            Baseurl = "https://api.claudeshop.top"
-            Skey = "sk-YKIsf5FHQhY3NdQW9f6944Dd2d5742049d7cDb398e66B862"
-
-            self.proxy_url = Baseurl + "/v1/chat/completions"
-            self.headers = {
-                'Accept': 'application/json',
-                'Authorization': f'Bearer {Skey}',
-                'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-                'Content-Type': 'application/json'
-            }
-            self.tokenizer = None
-            self.chat_func = self.llama_chat_function
-            self.base_path = "LLAMA/multiIDenyl1"
-
-        if chatbot_type == "Mixtral":
-            self.device = "cuda" if torch.cuda.is_available() else "cpu"
-            self.tokenizer = AutoTokenizer.from_pretrained(model_path_or_api)
-            self.model_or_client = AutoModelForCausalLM.from_pretrained(model_path_or_api, device_map="auto", torch_dtype=torch.float16,attn_implementation="sdpa")
-            self.chat_func = self.Mistral_chat_function
-            self.base_path = "Mixtral/multiDenyl1"
-        
-        if chatbot_type == "Qwen": 
-            self.device = "cuda" if torch.cuda.is_available() else "cpu"
-            self.model_or_client = AutoModelForCausalLM.from_pretrained(
-                model_path_or_api,
-                torch_dtype=torch.float16,
-                device_map = 'auto',
-                attn_implementation="sdpa"
-            )
-            self.tokenizer = AutoTokenizer.from_pretrained(model_path_or_api)
-            self.chat_func = self.Qwen_chat_function
-            self.base_path = "Qwen2.5/multiDenyl1"
-            
-        with open("Utils/entity_dict.json", "r") as f:
+        entity_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Utils", "entity_dict.json")
+        with open(entity_path, "r") as f:
             self.entity_dict = json.load(f)
-        
+
         # Init Tool
         self.tool_manager = ToolManager_IO()
         self.tool_manager.build_tools_toy()
@@ -112,75 +47,16 @@ class My_Chatbot:
         self.TOOLDES = self.tool_manager.tooldes
         self.TOOLBOX = self.tool_manager.toolbox
 
-    def GPT_chat_function(self, messages):
-        
-        output = send_request_gpt(messages, self.model_or_client)  
-        return output
-    
-    def GPT4o_chat_function(self, messages):
-        
-        output = send_request_gpt4o(messages, self.model_or_client)  
-        return output
-    
-    def o1_chat_function(self, messages):
-        
-        output = send_request_o1(messages, self.model_or_client)  
-        return output
-
-    def Claude_chat_function(self, messages):
-
-        output = send_request_claude(messages, self.model_or_client)
-        return output
-    
-    def Gemini_chat_function(self, messages):
-
-        output = send_request_gemini(messages, self.proxy_url, self.headers)
-        return output
-
-    def llama_chat_function(self, messages):
-
-        output = send_request_llama(messages, self.proxy_url, self.headers)
-        return output
-
-    def Mistral_chat_function(self, messages):
-        inputs = self.tokenizer.apply_chat_template(messages, return_tensors="pt").to(self.model_or_client.device)
-        outputs = self.model_or_client.generate(inputs, max_new_tokens=512)
-        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-    
-    
-    def Qwen_chat_function(self, messages):
-        
-        text = self.tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=True
-        )
-        model_inputs = self.tokenizer([text], return_tensors="pt").to(self.model_or_client.device)
-
-        generated_ids = self.model_or_client.generate(
-            model_inputs.input_ids,
-            max_new_tokens=512
-        )
-        generated_ids = [
-            output_ids[len(input_ids):] for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
-        ]
-
-        response = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
-        return response
-    
-    def main_work(self, case_json_dir = "CASE/combined_casesV3_qa_Subset.json"):
+    def main_work(self, case_json_dir = "Data/combined_casesV3_qa_Subset.json", start = 0, limit = None):
         with open(case_json_dir, "r") as f:
             combined_cases = json.load(f)
 
-        # for i in range(0,len(combined_cases)):
-        for i in range(0,20):
-            index_list = list(combined_cases.keys())
-            qa_dict =  combined_cases[index_list[i]]['QA']
-            for j in tqdm(range(len(qa_dict)), desc="Processing"):
+        index_list = list(combined_cases.keys())
+        stop = len(index_list) if limit is None else min(start + limit, len(index_list))
+        for i in range(start, stop):
+            qa_dict = combined_cases[index_list[i]]['QA']
+            for j in tqdm(range(len(qa_dict)), desc = f"Case {i}"):
                 self.pipelinerun(i, j, combined_cases, self.base_path)
-        # i, j = 0, 0
-        # self.pipelinerun(i, j, combined_cases, self.base_path)
-        
 
     def pipelinerun(self, i, j, combined_cases, base_path):
         index_list = list(combined_cases.keys())
@@ -201,7 +77,7 @@ class My_Chatbot:
             logout = f"Case {i}, Question {j}, {QA_type}: {query}\n"
 
             messages = [
-                {"role": "system", "content": initial_prompt},
+                {"role": "system", "content": self.system_prompt},
                 {"role": "user", "content": query}
             ]
 
@@ -296,6 +172,33 @@ class My_Chatbot:
         except Exception as e:
             handle_exception(e, TOOL_dict, tool_manager, i, j, QA_type, logout, messages, base_path)
 
-if __name__=="__main__":
-    chatbot = My_Chatbot(chatbot_type = "LLAMA", model_path_or_api = None)
-    chatbot.main_work()
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description = "Insufficient config1 - a whole tool category is missing",
+        formatter_class = argparse.ArgumentDefaultsHelpFormatter,
+    )
+    parser.add_argument("--model", default = "claude-sonnet-4.5",
+                        help = "model alias from Configs/models.yaml: " + ", ".join(available_models()))
+    parser.add_argument("--model-path", default = None,
+                        help = "local checkpoint path, for local_hf backends only")
+    parser.add_argument("--data", default = "Data/combined_casesV3_qa_Subset.json",
+                        help = "patient-record + QA file to evaluate")
+    parser.add_argument("--out", default = "Outputs",
+                        help = "root directory for logs and per-case traces")
+    parser.add_argument("--start", type = int, default = 0,
+                        help = "first case index, for resuming an interrupted run")
+    parser.add_argument("--limit", type = int, default = None,
+                        help = "evaluate at most this many cases (smoke tests)")
+    parser.add_argument("--strategies", default = "",
+                        help = "prompting strategies, comma separated: "
+                               "backprop, reflection, fewshot, multiagent; "
+                               "or 'all'. Empty reproduces the baseline.")
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    chatbot = My_Chatbot(model = args.model, model_path = args.model_path,
+                         output_root = args.out, strategies = args.strategies)
+    chatbot.main_work(case_json_dir = args.data, start = args.start, limit = args.limit)

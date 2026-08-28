@@ -1,0 +1,1690 @@
+
+==================================================
+=== Tool Description for TOOL1 ===
+Name: TOOL1
+Category: Anatomy Classifier
+Ability: Determine the anatomy of the Image.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Anatomy$']
+Performance: Score from 0.95 to 0.95, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL2 ===
+Name: TOOL2
+Category: Modality Classifier
+Ability: Determine the modality of the Image.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Modality$']
+Performance: Score from 0.95 to 0.95, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL3 ===
+Name: TOOL3
+Category: Organ Segmentor
+Ability: Given the modality and anatomy, segment all organs in the Image.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL4 ===
+Name: TOOL4
+Category: Organ Segmentor
+Ability: Given the Head and Neck X-ray Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL5 ===
+Name: TOOL5
+Category: Organ Segmentor
+Ability: Given the Head and Neck CT Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL6 ===
+Name: TOOL6
+Category: Organ Segmentor
+Ability: Given the Head and Neck MRI Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL7 ===
+Name: TOOL7
+Category: Organ Segmentor
+Ability: Given the Head and Neck Ultrasound Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL8 ===
+Name: TOOL8
+Category: Organ Segmentor
+Ability: Given the Chest X-ray Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL9 ===
+Name: TOOL9
+Category: Organ Segmentor
+Ability: Given the Chest CT Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL10 ===
+Name: TOOL10
+Category: Organ Segmentor
+Ability: Given the Chest MRI Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL11 ===
+Name: TOOL11
+Category: Organ Segmentor
+Ability: Given the Chest Ultrasound Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL12 ===
+Name: TOOL12
+Category: Organ Segmentor
+Ability: Given the Breast Mammography Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL13 ===
+Name: TOOL13
+Category: Organ Segmentor
+Ability: Given the Breast MRI Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL14 ===
+Name: TOOL14
+Category: Organ Segmentor
+Ability: Given the Breast Ultrasound Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL15 ===
+Name: TOOL15
+Category: Organ Segmentor
+Ability: Given the Abdomen and Pelvis X-ray Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL16 ===
+Name: TOOL16
+Category: Organ Segmentor
+Ability: Given the Abdomen and Pelvis CT Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL17 ===
+Name: TOOL17
+Category: Organ Segmentor
+Ability: Given the Abdomen and Pelvis MRI Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL18 ===
+Name: TOOL18
+Category: Organ Segmentor
+Ability: Given the Abdomen and Pelvis Ultrasound Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL19 ===
+Name: TOOL19
+Category: Organ Segmentor
+Ability: Given the Limb X-ray Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL20 ===
+Name: TOOL20
+Category: Organ Segmentor
+Ability: Given the Limb CT Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL21 ===
+Name: TOOL21
+Category: Organ Segmentor
+Ability: Given the Limb MRI Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL22 ===
+Name: TOOL22
+Category: Organ Segmentor
+Ability: Given the Limb Ultrasound Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL23 ===
+Name: TOOL23
+Category: Organ Segmentor
+Ability: Given the Spine X-ray Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL24 ===
+Name: TOOL24
+Category: Organ Segmentor
+Ability: Given the Spine CT Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL25 ===
+Name: TOOL25
+Category: Organ Segmentor
+Ability: Given the Spine MRI Image, segment the organs.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.85 to 0.85, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL26 ===
+Name: TOOL26
+Category: Anomaly Detector
+Ability: Given the modality and anatomy, determine the location and type of abnormality.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL27 ===
+Name: TOOL27
+Category: Anomaly Detector
+Ability: Given the Head and Neck X-ray Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL28 ===
+Name: TOOL28
+Category: Anomaly Detector
+Ability: Given the Head and Neck CT Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL29 ===
+Name: TOOL29
+Category: Anomaly Detector
+Ability: Given the Head and Neck MRI Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL30 ===
+Name: TOOL30
+Category: Anomaly Detector
+Ability: Given the Head and Neck Ultrasound Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL31 ===
+Name: TOOL31
+Category: Anomaly Detector
+Ability: Given the Chest X-ray Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL32 ===
+Name: TOOL32
+Category: Anomaly Detector
+Ability: Given the Chest CT Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL33 ===
+Name: TOOL33
+Category: Anomaly Detector
+Ability: Given the Chest MRI Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL34 ===
+Name: TOOL34
+Category: Anomaly Detector
+Ability: Given the Chest Ultrasound Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL35 ===
+Name: TOOL35
+Category: Anomaly Detector
+Ability: Given the Breast Mammography Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL36 ===
+Name: TOOL36
+Category: Anomaly Detector
+Ability: Given the Breast MRI Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL37 ===
+Name: TOOL37
+Category: Anomaly Detector
+Ability: Given the Breast Ultrasound Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL38 ===
+Name: TOOL38
+Category: Anomaly Detector
+Ability: Given the Abdomen and Pelvis X-ray Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL39 ===
+Name: TOOL39
+Category: Anomaly Detector
+Ability: Given the Abdomen and Pelvis CT Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL40 ===
+Name: TOOL40
+Category: Anomaly Detector
+Ability: Given the Abdomen and Pelvis MRI Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL41 ===
+Name: TOOL41
+Category: Anomaly Detector
+Ability: Given the Abdomen and Pelvis Ultrasound Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL42 ===
+Name: TOOL42
+Category: Anomaly Detector
+Ability: Given the Limb X-ray Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL43 ===
+Name: TOOL43
+Category: Anomaly Detector
+Ability: Given the Limb CT Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL44 ===
+Name: TOOL44
+Category: Anomaly Detector
+Ability: Given the Limb MRI Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL45 ===
+Name: TOOL45
+Category: Anomaly Detector
+Ability: Given the Limb Ultrasound Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL46 ===
+Name: TOOL46
+Category: Anomaly Detector
+Ability: Given the Spine X-ray Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL47 ===
+Name: TOOL47
+Category: Anomaly Detector
+Ability: Given the Spine CT Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL48 ===
+Name: TOOL48
+Category: Anomaly Detector
+Ability: Given the Spine MRI Image, determine the location and type of abnormality.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL49 ===
+Name: TOOL49
+Category: Disease Diagnoser
+Ability: Given the modality and anatomy, diagnose the disease.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.7 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL50 ===
+Name: TOOL50
+Category: Disease Diagnoser
+Ability: Given the Head and Neck X-ray Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL51 ===
+Name: TOOL51
+Category: Disease Diagnoser
+Ability: Given the Head and Neck CT Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL52 ===
+Name: TOOL52
+Category: Disease Diagnoser
+Ability: Given the Head and Neck MRI Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL53 ===
+Name: TOOL53
+Category: Disease Diagnoser
+Ability: Given the Head and Neck Ultrasound Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL54 ===
+Name: TOOL54
+Category: Disease Diagnoser
+Ability: Given the Chest X-ray Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL55 ===
+Name: TOOL55
+Category: Disease Diagnoser
+Ability: Given the Chest CT Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL56 ===
+Name: TOOL56
+Category: Disease Diagnoser
+Ability: Given the Chest MRI Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL57 ===
+Name: TOOL57
+Category: Disease Diagnoser
+Ability: Given the Chest Ultrasound Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL58 ===
+Name: TOOL58
+Category: Disease Diagnoser
+Ability: Given the Breast Mammography Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL59 ===
+Name: TOOL59
+Category: Disease Diagnoser
+Ability: Given the Breast MRI Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL60 ===
+Name: TOOL60
+Category: Disease Diagnoser
+Ability: Given the Breast Ultrasound Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL61 ===
+Name: TOOL61
+Category: Disease Diagnoser
+Ability: Given the Abdomen and Pelvis X-ray Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL62 ===
+Name: TOOL62
+Category: Disease Diagnoser
+Ability: Given the Abdomen and Pelvis CT Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL63 ===
+Name: TOOL63
+Category: Disease Diagnoser
+Ability: Given the Abdomen and Pelvis MRI Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL64 ===
+Name: TOOL64
+Category: Disease Diagnoser
+Ability: Given the Abdomen and Pelvis Ultrasound Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL65 ===
+Name: TOOL65
+Category: Disease Diagnoser
+Ability: Given the Limb X-ray Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL66 ===
+Name: TOOL66
+Category: Disease Diagnoser
+Ability: Given the Limb CT Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL67 ===
+Name: TOOL67
+Category: Disease Diagnoser
+Ability: Given the Limb MRI Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL68 ===
+Name: TOOL68
+Category: Disease Diagnoser
+Ability: Given the Limb Ultrasound Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL69 ===
+Name: TOOL69
+Category: Disease Diagnoser
+Ability: Given the Spine X-ray Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL70 ===
+Name: TOOL70
+Category: Disease Diagnoser
+Ability: Given the Spine CT Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL71 ===
+Name: TOOL71
+Category: Disease Diagnoser
+Ability: Given the Spine MRI Image, diagnose the disease.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL72 ===
+Name: TOOL72
+Category: Disease Inferencer
+Ability: Infer disease based on the patient's Information, organ segmentation and anomaly detection results.
+Compulsory Input: ['$Image$', '$Information$', '$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL73 ===
+Name: TOOL73
+Category: Biomarker Quantifier
+Ability: Measure the organ biomarker of the Image.
+Compulsory Input: ['$Image$', '$OrganObject$', '$OrganMask$']
+Optional Input: ['$OrganDim$']
+Output: ['$OrganDim$', '$OrganQuant$']
+Performance: Score from 0.75 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL74 ===
+Name: TOOL74
+Category: Biomarker Quantifier
+Ability: Measure the anomaly biomarker of the Image.
+Compulsory Input: ['$Image$', '$AnomalyObject$', '$AnomalyMask$']
+Optional Input: ['$AnomalyDim$']
+Output: ['$AnomalyDim$', '$AnomalyQuant$']
+Performance: Score from 0.75 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL75 ===
+Name: TOOL75
+Category: Indicator Evaluator
+Ability: Evaluate the indicator based on the patient's Information and organ segmentation
+Compulsory Input: ['$Image$', '$Information$', '$IndicatorName$', '$OrganObject$', '$OrganDim$', '$OrganQuant$']
+Optional Input: []
+Output: ['$IndicatorValue$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL76 ===
+Name: TOOL76
+Category: Indicator Evaluator
+Ability: Evaluate the indicator based on the patient's Information and anomaly detection
+Compulsory Input: ['$Image$', '$Information$', '$IndicatorName$', '$AnomalyObject$', '$AnomalyDim$', '$AnomalyQuant$']
+Optional Input: []
+Output: ['$IndicatorValue$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL77 ===
+Name: TOOL77
+Category: Report Generator
+Ability: Given the modality and anatomy, generate a basic radiology report from the input image.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.35 to 0.35, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL78 ===
+Name: TOOL78
+Category: Report Generator
+Ability: Given the modality, anatomy and any other text information, generate a radiology report from the input image.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.35 to 0.65, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL79 ===
+Name: TOOL79
+Category: Report Generator
+Ability: ('Given the modality, anatomy and any other organ/anomaly masks and labels, generate a radiology report from the input image.',)
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.35 to 0.71, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL80 ===
+Name: TOOL80
+Category: Report Generator
+Ability: Given the modality, anatomy, any other text information and organ/anomaly masks and labels, generate a radiology report from the input image.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.35 to 0.83, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL81 ===
+Name: TOOL81
+Category: Report Generator
+Ability: Given the Head and Neck X-ray Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL82 ===
+Name: TOOL82
+Category: Report Generator
+Ability: Given the Head and Neck X-ray Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL83 ===
+Name: TOOL83
+Category: Report Generator
+Ability: Given the Head and Neck X-ray Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL84 ===
+Name: TOOL84
+Category: Report Generator
+Ability: Given the Head and Neck X-ray Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL85 ===
+Name: TOOL85
+Category: Report Generator
+Ability: Given the Head and Neck CT Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL86 ===
+Name: TOOL86
+Category: Report Generator
+Ability: Given the Head and Neck CT Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL87 ===
+Name: TOOL87
+Category: Report Generator
+Ability: Given the Head and Neck CT Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL88 ===
+Name: TOOL88
+Category: Report Generator
+Ability: Given the Head and Neck CT Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL89 ===
+Name: TOOL89
+Category: Report Generator
+Ability: Given the Head and Neck MRI Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL90 ===
+Name: TOOL90
+Category: Report Generator
+Ability: Given the Head and Neck MRI Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL91 ===
+Name: TOOL91
+Category: Report Generator
+Ability: Given the Head and Neck MRI Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL92 ===
+Name: TOOL92
+Category: Report Generator
+Ability: Given the Head and Neck MRI Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL93 ===
+Name: TOOL93
+Category: Report Generator
+Ability: Given the Head and Neck Ultrasound Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL94 ===
+Name: TOOL94
+Category: Report Generator
+Ability: Given the Head and Neck Ultrasound Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL95 ===
+Name: TOOL95
+Category: Report Generator
+Ability: Given the Head and Neck Ultrasound Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL96 ===
+Name: TOOL96
+Category: Report Generator
+Ability: Given the Head and Neck Ultrasound Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL97 ===
+Name: TOOL97
+Category: Report Generator
+Ability: Given the Chest X-ray Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL98 ===
+Name: TOOL98
+Category: Report Generator
+Ability: Given the Chest X-ray Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL99 ===
+Name: TOOL99
+Category: Report Generator
+Ability: Given the Chest X-ray Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL100 ===
+Name: TOOL100
+Category: Report Generator
+Ability: Given the Chest X-ray Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL101 ===
+Name: TOOL101
+Category: Report Generator
+Ability: Given the Chest CT Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL102 ===
+Name: TOOL102
+Category: Report Generator
+Ability: Given the Chest CT Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL103 ===
+Name: TOOL103
+Category: Report Generator
+Ability: Given the Chest CT Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL104 ===
+Name: TOOL104
+Category: Report Generator
+Ability: Given the Chest CT Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL105 ===
+Name: TOOL105
+Category: Report Generator
+Ability: Given the Chest MRI Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL106 ===
+Name: TOOL106
+Category: Report Generator
+Ability: Given the Chest MRI Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL107 ===
+Name: TOOL107
+Category: Report Generator
+Ability: Given the Chest MRI Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL108 ===
+Name: TOOL108
+Category: Report Generator
+Ability: Given the Chest MRI Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL109 ===
+Name: TOOL109
+Category: Report Generator
+Ability: Given the Chest Ultrasound Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL110 ===
+Name: TOOL110
+Category: Report Generator
+Ability: Given the Chest Ultrasound Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL111 ===
+Name: TOOL111
+Category: Report Generator
+Ability: Given the Chest Ultrasound Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL112 ===
+Name: TOOL112
+Category: Report Generator
+Ability: Given the Chest Ultrasound Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL113 ===
+Name: TOOL113
+Category: Report Generator
+Ability: Given the Breast Mammography Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL114 ===
+Name: TOOL114
+Category: Report Generator
+Ability: Given the Breast Mammography Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL115 ===
+Name: TOOL115
+Category: Report Generator
+Ability: Given the Breast Mammography Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL116 ===
+Name: TOOL116
+Category: Report Generator
+Ability: Given the Breast Mammography Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL117 ===
+Name: TOOL117
+Category: Report Generator
+Ability: Given the Breast MRI Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL118 ===
+Name: TOOL118
+Category: Report Generator
+Ability: Given the Breast MRI Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL119 ===
+Name: TOOL119
+Category: Report Generator
+Ability: Given the Breast MRI Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL120 ===
+Name: TOOL120
+Category: Report Generator
+Ability: Given the Breast MRI Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL121 ===
+Name: TOOL121
+Category: Report Generator
+Ability: Given the Breast Ultrasound Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL122 ===
+Name: TOOL122
+Category: Report Generator
+Ability: Given the Breast Ultrasound Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL123 ===
+Name: TOOL123
+Category: Report Generator
+Ability: Given the Breast Ultrasound Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL124 ===
+Name: TOOL124
+Category: Report Generator
+Ability: Given the Breast Ultrasound Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL125 ===
+Name: TOOL125
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis X-ray Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL126 ===
+Name: TOOL126
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis X-ray Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL127 ===
+Name: TOOL127
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis X-ray Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL128 ===
+Name: TOOL128
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis X-ray Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL129 ===
+Name: TOOL129
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis CT Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL130 ===
+Name: TOOL130
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis CT Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL131 ===
+Name: TOOL131
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis CT Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL132 ===
+Name: TOOL132
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis CT Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL133 ===
+Name: TOOL133
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis MRI Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL134 ===
+Name: TOOL134
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis MRI Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL135 ===
+Name: TOOL135
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis MRI Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL136 ===
+Name: TOOL136
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis MRI Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL137 ===
+Name: TOOL137
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis Ultrasound Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL138 ===
+Name: TOOL138
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis Ultrasound Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL139 ===
+Name: TOOL139
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis Ultrasound Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL140 ===
+Name: TOOL140
+Category: Report Generator
+Ability: Given the Abdomen and Pelvis Ultrasound Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL141 ===
+Name: TOOL141
+Category: Report Generator
+Ability: Given the Limb X-ray Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL142 ===
+Name: TOOL142
+Category: Report Generator
+Ability: Given the Limb X-ray Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL143 ===
+Name: TOOL143
+Category: Report Generator
+Ability: Given the Limb X-ray Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL144 ===
+Name: TOOL144
+Category: Report Generator
+Ability: Given the Limb X-ray Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL145 ===
+Name: TOOL145
+Category: Report Generator
+Ability: Given the Limb CT Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL146 ===
+Name: TOOL146
+Category: Report Generator
+Ability: Given the Limb CT Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL147 ===
+Name: TOOL147
+Category: Report Generator
+Ability: Given the Limb CT Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL148 ===
+Name: TOOL148
+Category: Report Generator
+Ability: Given the Limb CT Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL149 ===
+Name: TOOL149
+Category: Report Generator
+Ability: Given the Limb MRI Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL150 ===
+Name: TOOL150
+Category: Report Generator
+Ability: Given the Limb MRI Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL151 ===
+Name: TOOL151
+Category: Report Generator
+Ability: Given the Limb MRI Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL152 ===
+Name: TOOL152
+Category: Report Generator
+Ability: Given the Limb MRI Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL153 ===
+Name: TOOL153
+Category: Report Generator
+Ability: Given the Limb Ultrasound Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL154 ===
+Name: TOOL154
+Category: Report Generator
+Ability: Given the Limb Ultrasound Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL155 ===
+Name: TOOL155
+Category: Report Generator
+Ability: Given the Limb Ultrasound Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL156 ===
+Name: TOOL156
+Category: Report Generator
+Ability: Given the Limb Ultrasound Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL157 ===
+Name: TOOL157
+Category: Report Generator
+Ability: Given the Spine X-ray Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL158 ===
+Name: TOOL158
+Category: Report Generator
+Ability: Given the Spine X-ray Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL159 ===
+Name: TOOL159
+Category: Report Generator
+Ability: Given the Spine X-ray Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL160 ===
+Name: TOOL160
+Category: Report Generator
+Ability: Given the Spine X-ray Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL161 ===
+Name: TOOL161
+Category: Report Generator
+Ability: Given the Spine CT Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL162 ===
+Name: TOOL162
+Category: Report Generator
+Ability: Given the Spine CT Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL163 ===
+Name: TOOL163
+Category: Report Generator
+Ability: Given the Spine CT Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL164 ===
+Name: TOOL164
+Category: Report Generator
+Ability: Given the Spine CT Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL165 ===
+Name: TOOL165
+Category: Report Generator
+Ability: Given the Spine MRI Image, generate a basic radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.4, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL166 ===
+Name: TOOL166
+Category: Report Generator
+Ability: Given the Spine MRI Image and any other text information, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL167 ===
+Name: TOOL167
+Category: Report Generator
+Ability: Given the Spine MRI Image and any other organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.76, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL168 ===
+Name: TOOL168
+Category: Report Generator
+Ability: Given the Spine MRI Image, any other text information and organ/anomaly masks and labels, generate a radiology report.
+Compulsory Input: ['$Image$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.4 to 0.88, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL169 ===
+Name: TOOL169
+Category: Treatment Recommender
+Ability: Recommend treatment based on the patient's Information and Report
+Compulsory Input: ['$Information$', '$Report$']
+Optional Input: ['$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Treatment$']
+Performance: Score from 0.8 to 0.98, increases with optional inputs

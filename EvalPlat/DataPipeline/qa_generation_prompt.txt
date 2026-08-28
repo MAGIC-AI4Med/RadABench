@@ -1,0 +1,134 @@
+Assume a clinical medical imaging scenario where you, as the Agent core, play the role of a doctor. 
+Given a patient's radiological image, you want to complete different tasks by calling various tools. 
+There are ten tools in total (numbered 0 to 9):
+
+TOOLKIT 
+0. |Modality Classifier|
+    Property: A classification model
+    Ability: Determine the modality of the Image.
+    Input: [Image]
+    Output: [Modality]
+
+1. |Anatomy Classifier|
+    Property: A classification model,
+    Ability: Determine the anatomy of the Image.
+    Input: [Image]
+    Output: [Anatomy]
+
+2. |Organ Segmentation Model|
+    Property: A segmentation model
+    Ability: Given the modality and anatomy, segment all organs in the Image (can not segment any lesion or abnormality).
+    Input: [Image] & [Modality] & [Anatomy]
+    Output: [Organ Mask] & [Organ Label]
+
+3. |Anomaly Detection Model|
+    Property: A detection model
+    Ability: Given the modality and anatomy, determine the location and type of abnormality.
+    Input: [Image] & [Modality] & [Anatomy]
+    Output: [Anomaly Mask] & [Anomaly Label]
+
+4. |Disease Diagnosis Model|
+    Property: A classification model
+    Ability: Given the modality and anatomy, diagnose diseases directly from the input image.
+    Input: [Image] & [Modality] & [Anatomy]
+    Output: [Diseases]
+
+5. |Disease Inference Model|
+    Property: A Inference model
+    Ability: Infer disease based on organ segmentation and anomaly detection results.
+    Input: [Image] & [Organ Mask] & [Organ Label] & [Anomaly Mask] & [Anomaly Label]
+    Output: [Diseases]
+
+6. |Biomarker Quantification Model|
+    Property: A quantification model
+    Ability: Given the organ region or anomaly region and the biomarker of interest, estimate its property. The biomarker can be either organ or anomaly. The dimension can be one of the number, length, size, volume, angle, density, intensity or texture of the organ or anomaly.
+    Input: [Image] & [Object] & [Dim] & [Biomarker Mask] & [Biomarker Label]
+    Output: [Quant]
+
+7. |Indicator Evaluation Model|
+    Property: A calculation model
+    Ability: Use prior patient information and several biomarkers values to calculate the indicator, the indicator can be a score or a grading.
+    Input: [Priors] & [Indicator] & [Biomarkers] & [Quants]
+    Output: [Value]
+
+8. |Report Generation Model|
+    Property: A multimodal model
+    Ability: Generate a medical report by integrating results processed by former tools.
+    Input: [Image] & [Modality] & [Anatomy]
+    Optional Input: ([Organ Mask] & [Organ Label]), ([Anomaly Mask] & [Anomaly Label]), [Diseases], ([Object] & [Dim] & [Quant]), ([Indicators] & [Values])
+    Output: [Report]
+
+9. |Treatment Recommendation Model|
+    Property: a language model
+    Ability: Recommend personalized treatment plans based on all results processed by former tools and the patient's information.
+    Input: [Image] & [Priors] & [Modality] & [Anatomy] & [Diseases]
+    Optional Input: ([Organ Mask] & [Organ Label]),([Anomaly Mask] & [Anomaly Label]), ([Object] & [Dim] & [Quant]), ([Indicators] & [Values])
+    Output: [Treatment]
+
+There are 11 different tasks and the chain of tools each task hopes to break down into:
+
+(1) Basic Image Analysis and Organ Segmentation
+    ToolUse: 012
+    Description: Perform basic image analysis and segment organs within the medical image.
+
+(2) Basic Image Analysis and Anomaly Detection
+    ToolUse: 013
+    Description: Perform basic image analysis and detect anomalies within the medical image.
+
+(3) Image-based Direct Disease Diagnosis
+    ToolUse: 014
+    Description: Diagnose disease directly from the medical image without intermediate steps.
+
+(4) Organ segmentation and anomaly localization
+    ToolUse: 0123
+    Description: Segment organs and locate anomalies within the medical image.
+
+(5) Anomaly-based Disease Diagnosis
+    ToolUse: 01235
+    Description: Diagnose disease based on disease inference by finding abnormalities and the organ in which they occur.
+
+(6) Organ Biomarker Quantification  
+    ToolUse: 0126
+    Description: Quantify specific biomarkers related to organs in the medical image.
+
+(7) Anomaly Biomarker Quantification
+    ToolUse: 0136
+    Description: Quantify specific biomarkers related to anomalies in the medical image.
+
+(8) Disease and Anomaly Based Report Generation
+    ToolUse: 01348
+    Description: Generate a medical report based on detected diseases and anomalies.
+
+(9) Disease and Biomarker Based Report Generation
+    ToolUse: 0123568
+    Description: Generate a comprehensive report incorporating anomaly detection, disease diagnosis and biomarker quantification.
+
+(10) Comprehensive Evaluation Report Generation
+    ToolUse: 01235678
+    Description: Generate a detailed evaluation report including all aspects of the medical image analysis.
+
+(11) Comprehensive Report Generation and Treatment Recommendations
+    ToolUse: 012356789
+    Description: Generate a comprehensive report including all analysis results and treatment recommendations.
+
+Please generate 11 mutually independent question-answer pairs corresponding to tasks above, based on the different task natures and the content of the case. specifically, Strictly avoid including information 
+in the questions that should be determined by the tools (such as imaging modality, specific anatomy, or precise abnormality types).
+Pay attention: create task-specific question-answer pairs that highlight the unique tool usage patterns for different tasks. The questions should be:
+
+1. Naturally aligned with the task description
+2. Representative of real-world scenarios for that task type
+3. Questions must not reveal information about modality or anatomy that should be determined by Tools 0 and 1 or other tools. The questions should be phrased in a way that necessitates the use of these basic identification tools.
+
+Provide answers in the most concise free-text form possible. If visual results such as masks are involved, please embed them 
+in the text in the form of [Organ Mask] or [Anomaly Mask]. (eg. The organ segmentation result is shown as [Organ Mask].) The 11 generated question-answer pairs should follow this template:
+
+<Q1> ... </Q1>
+<A1> ... </A1>
+<Q2> ... </Q2>
+<A2> ... </A2>
+...
+<Q11> ... </Q11>
+<A11> ... </A11>
+
+The answer only needs to provide a simple final result based on the information already available in the Case, 
+without showing the thought process. I will now provide you with a Case containing all the information.

@@ -1,0 +1,150 @@
+
+==================================================
+=== Tool Description for TOOL1 ===
+Name: TOOL1
+Category: Anatomy Classifier
+Ability: Determine the anatomy of the Image.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Anatomy$']
+Performance: Score from 0.95 to 0.95, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL2 ===
+Name: TOOL2
+Category: Modality Classifier
+Ability: Determine the modality of the Image.
+Compulsory Input: ['$Image$']
+Optional Input: []
+Output: ['$Modality$']
+Performance: Score from 0.95 to 0.95, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL3 ===
+Name: TOOL3
+Category: Organ Segmentor
+Ability: Given the modality and anatomy, segment all organs in the Image.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$OrganMask$', '$OrganObject$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL4 ===
+Name: TOOL4
+Category: Anomaly Detector
+Ability: Given the modality and anatomy, determine the location and type of abnormality.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$AnomalyMask$', '$AnomalyObject$']
+Performance: Score from 0.75 to 0.75, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL5 ===
+Name: TOOL5
+Category: Disease Diagnoser
+Ability: Given the modality and anatomy, diagnose the disease.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.7 to 0.7, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL6 ===
+Name: TOOL6
+Category: Disease Inferencer
+Ability: Infer disease based on the patient's Information, organ segmentation and anomaly detection results.
+Compulsory Input: ['$Image$', '$Information$', '$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Optional Input: []
+Output: ['$Disease$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL7 ===
+Name: TOOL7
+Category: Biomarker Quantifier
+Ability: Measure the organ biomarker of the Image.
+Compulsory Input: ['$Image$', '$OrganObject$', '$OrganMask$']
+Optional Input: ['$OrganDim$']
+Output: ['$OrganDim$', '$OrganQuant$']
+Performance: Score from 0.75 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL8 ===
+Name: TOOL8
+Category: Biomarker Quantifier
+Ability: Measure the anomaly biomarker of the Image.
+Compulsory Input: ['$Image$', '$AnomalyObject$', '$AnomalyMask$']
+Optional Input: ['$AnomalyDim$']
+Output: ['$AnomalyDim$', '$AnomalyQuant$']
+Performance: Score from 0.75 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL9 ===
+Name: TOOL9
+Category: Indicator Evaluator
+Ability: Evaluate the indicator based on the patient's Information and organ segmentation
+Compulsory Input: ['$Image$', '$Information$', '$IndicatorName$', '$OrganObject$', '$OrganDim$', '$OrganQuant$']
+Optional Input: []
+Output: ['$IndicatorValue$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL10 ===
+Name: TOOL10
+Category: Indicator Evaluator
+Ability: Evaluate the indicator based on the patient's Information and anomaly detection
+Compulsory Input: ['$Image$', '$Information$', '$IndicatorName$', '$AnomalyObject$', '$AnomalyDim$', '$AnomalyQuant$']
+Optional Input: []
+Output: ['$IndicatorValue$']
+Performance: Score from 0.8 to 0.8, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL11 ===
+Name: TOOL11
+Category: Report Generator
+Ability: Given the modality and anatomy, generate a basic radiology report from the input image.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: []
+Output: ['$Report$']
+Performance: Score from 0.35 to 0.35, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL12 ===
+Name: TOOL12
+Category: Report Generator
+Ability: Given the modality, anatomy and any other text information, generate a radiology report from the input image.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Report$']
+Performance: Score from 0.35 to 0.65, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL13 ===
+Name: TOOL13
+Category: Report Generator
+Ability: ('Given the modality, anatomy and any other organ/anomaly masks and labels, generate a radiology report from the input image.',)
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: ['$OrganMask$', '$OrganObject$', '$AnomalyMask$', '$AnomalyObject$']
+Output: ['$Report$']
+Performance: Score from 0.35 to 0.71, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL14 ===
+Name: TOOL14
+Category: Report Generator
+Ability: Given the modality, anatomy, any other text information and organ/anomaly masks and labels, generate a radiology report from the input image.
+Compulsory Input: ['$Image$', '$Anatomy$', '$Modality$']
+Optional Input: ['$Information$', '$OrganObject$', '$AnomalyObject$', '$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$', '$OrganMask$', '$AnomalyMask$']
+Output: ['$Report$']
+Performance: Score from 0.35 to 0.83, increases with optional inputs
+
+==================================================
+=== Tool Description for TOOL15 ===
+Name: TOOL15
+Category: Treatment Recommender
+Ability: Recommend treatment based on the patient's Information and Report
+Compulsory Input: ['$Information$', '$Report$']
+Optional Input: ['$Disease$', '$OrganDim$', '$OrganQuant$', '$AnomalyDim$', '$AnomalyQuant$', '$IndicatorName$', '$ValueName$']
+Output: ['$Treatment$']
+Performance: Score from 0.8 to 0.98, increases with optional inputs

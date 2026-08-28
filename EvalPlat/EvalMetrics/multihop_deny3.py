@@ -84,7 +84,7 @@ def main():
         "012356789": 'Indicator Evaluator'
     }
 
-    # with open("/remote-home/qiaoyuzheng/MedAgents/AgentCoreV3/CASE/combined_casesV3_qa_Subset.json", 'r') as f:
+    # with open("Data/combined_casesV3_qa_Subset.json", 'r') as f:
     #     combined_cases = json.load(f)
     # case_list = list(combined_cases.values())
 

@@ -1,0 +1,141 @@
+# ============================================================================
+# RadA-BenchPlat model registry
+# ----------------------------------------------------------------------------
+# Every entry maps a model alias (passed via `--model`) to the information the
+# agent core needs in order to talk to it.
+#
+#   backend      openai_compatible | http_proxy | local_hf
+#   model_id     the exact identifier sent to the provider
+#   api_key_env  name of the environment variable holding the credential
+#   base_url_env optional; overrides `base_url` at run time
+#   paper_ref    which table/figure of the paper this model appears in
+#
+# NO CREDENTIAL IS EVER STORED IN THIS FILE. Copy `.env.example` to `.env`
+# and fill in your own keys, or export them in your shell.
+# ============================================================================
+
+defaults:
+  temperature: 0.0
+  max_tokens: 2048
+  timeout: 120
+  max_retries: 5
+
+models:
+
+  # ---------------------------------------------------------------- 论文主表
+  # Table 1 (task completion) and Table 4 (real-case evaluation).
+
+  claude-sonnet-4.5:
+    backend: openai_compatible
+    model_id: claude-sonnet-4-5-20250929
+    base_url: https://api.anthropic.com/v1
+    base_url_env: ANTHROPIC_BASE_URL
+    api_key_env: ANTHROPIC_API_KEY
+    paper_ref: [tab:current_model_completion, tab:redundant_metrics, tab:real_case_evaluation]
+
+  gpt-5.2-chat:
+    backend: openai_compatible
+    model_id: gpt-5.2-chat
+    base_url: https://api.openai.com/v1
+    base_url_env: OPENAI_BASE_URL
+    api_key_env: OPENAI_API_KEY
+    paper_ref: [tab:current_model_completion]
+
+  o3:
+    backend: openai_compatible
+    model_id: o3
+    base_url: https://api.openai.com/v1
+    base_url_env: OPENAI_BASE_URL
+    api_key_env: OPENAI_API_KEY
+    paper_ref: [tab:real_case_evaluation]
+
+  gemini-3.0-pro:
+    backend: openai_compatible
+    model_id: gemini-3.0-pro
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai
+    base_url_env: GOOGLE_BASE_URL
+    api_key_env: GOOGLE_API_KEY
+    paper_ref: [tab:current_model_completion, tab:real_case_evaluation]
+
+  deepseek-r1:
+    backend: openai_compatible
+    model_id: deepseek-reasoner
+    base_url: https://api.deepseek.com/v1
+    base_url_env: DEEPSEEK_BASE_URL
+    api_key_env: DEEPSEEK_API_KEY
+    paper_ref: [tab:current_model_completion]
+
+  qwen3-235b:
+    backend: openai_compatible
+    model_id: qwen3-235b-a22b
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    base_url_env: DASHSCOPE_BASE_URL
+    api_key_env: DASHSCOPE_API_KEY
+    paper_ref: [tab:current_model_completion]
+
+  gpt-4o:
+    backend: openai_compatible
+    model_id: gpt-4o-2024-08-06
+    base_url: https://api.openai.com/v1
+    base_url_env: OPENAI_BASE_URL
+    api_key_env: OPENAI_API_KEY
+    paper_ref: [tab:real_case_evaluation]
+
+  # ------------------------------------------------------- arXiv v1 的旧模型
+  # Kept so the earlier arXiv results remain reproducible.
+
+  gpt-4:
+    backend: openai_compatible
+    model_id: gpt-4-1106-preview
+    base_url: https://api.openai.com/v1
+    base_url_env: OPENAI_BASE_URL
+    api_key_env: OPENAI_API_KEY
+    paper_ref: [arxiv-v1]
+
+  o1-mini:
+    backend: openai_compatible
+    model_id: o1-mini
+    base_url: https://api.openai.com/v1
+    base_url_env: OPENAI_BASE_URL
+    api_key_env: OPENAI_API_KEY
+    paper_ref: [arxiv-v1]
+
+  claude-3.5:
+    backend: openai_compatible
+    model_id: claude-3-5-sonnet-20241022
+    base_url: https://api.anthropic.com/v1
+    base_url_env: ANTHROPIC_BASE_URL
+    api_key_env: ANTHROPIC_API_KEY
+    paper_ref: [arxiv-v1]
+
+  gemini-1.5:
+    backend: http_proxy
+    model_id: gemini-1.5-pro-latest
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai
+    base_url_env: GOOGLE_BASE_URL
+    api_key_env: GOOGLE_API_KEY
+    paper_ref: [arxiv-v1]
+
+  llama-3.1-405b:
+    backend: http_proxy
+    model_id: Meta-Llama-3.1-405B-Instruct
+    base_url: https://api.together.xyz/v1
+    base_url_env: LLAMA_BASE_URL
+    api_key_env: LLAMA_API_KEY
+    paper_ref: [arxiv-v1]
+
+  # ------------------------------------------------------------ 本地权重模型
+  # `model_path` may be a HuggingFace repo id or a local directory; override
+  # with --model-path.
+
+  mixtral:
+    backend: local_hf
+    model_path: mistralai/Mixtral-8x7B-Instruct-v0.1
+    model_path_env: MIXTRAL_PATH
+    paper_ref: [arxiv-v1]
+
+  qwen2.5:
+    backend: local_hf
+    model_path: Qwen/Qwen2.5-72B-Instruct
+    model_path_env: QWEN_PATH
+    paper_ref: [arxiv-v1]

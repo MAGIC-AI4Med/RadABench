@@ -332,55 +332,11 @@ def log_to_file(message, file_path):
     with open(file_path, 'a', encoding='utf-8') as f:
         f.write(str(message) + '\n')
 
-def send_request_gpt(messages, client):
-    response = client.chat.completions.create(
-        model="gpt-4-1106-preview",
-        messages=messages
-    )
-    return response.choices[0].message.content
 
-def send_request_gpt4o(messages, client):
-    response = client.chat.completions.create(
-        model="gpt-4o-2024-08-06",
-        messages=messages
-    )
-    return response.choices[0].message.content
 
-def send_request_o1(messages, client):
-    response = client.chat.completions.create(
-        model="o1-mini",
-        messages=messages
-    )
-    return response.choices[0].message.content
 
-def send_request_claude(messages, client):
-    """Sends a request to the model and returns the response content."""
-    response = client.chat.completions.create(
-        model="claude-3-5-sonnet-20241022",
-        messages=messages
-    )
-    return response.choices[0].message.content
 
-def send_request_gemini(messages, proxy_url, headers):
-    """Sends a request to the model and returns the response content."""
-    payload = json.dumps({
-        "model": "gemini-1.5-pro-latest",
-        "messages": messages
-    })
-    response = requests.post(proxy_url, headers=headers, data=payload)
-    response_content = response.json()
-    return response_content['choices'][0]['message']['content']
 
-def send_request_llama(messages, proxy_url, headers):
-    """Sends a request to the model and returns the response content."""
-    payload = json.dumps({
-        "model": "Meta-Llama-3.1-405B-Instruct",
-        "messages": messages
-    })
-    response = requests.post(proxy_url, headers=headers, data=payload)
-    response_content = response.json()
-    # print(response_content)
-    return response_content['choices'][0]['message']['content']
 
 def prepare_decomposition_prompt(TOOLDES):
     """Prepares the decomposition task prompt."""

@@ -1,1 +1,21 @@
+# credentials, never commit
+.env
+*.key
+
+# evaluation outputs
+Outputs/
+EvalPlat/Outputs/
+*.log
+
+# python
 **/__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# notebooks
+.ipynb_checkpoints/
+
+# os
+.DS_Store
