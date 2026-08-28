@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="./assets/RadA.png" alt="RadA-BenchPlat" height="72">
-
-# RadA-BenchPlat
+<img src="./assets/RadA.png" alt="RadA-BenchPlat" height="88">
 
 **How Well Can Modern LLMs Act as Agent Cores in Radiology Environments?**
 
@@ -21,10 +19,31 @@ agentic systems actually achieve on executable radiology tasks.
 
 ---
 
+## What we found
+
+- **The bottleneck is execution fidelity, not planning.** Agents form plausible
+  plans and pick competitive tools, then lose the thread mid-chain. Chain
+  distances stay small as difficulty grows while ECR and PFSP collapse.
+- **Tool-level competence does not become task success.** Agents hit
+  intermediate milestones and still fail to decide which result answers the
+  question, or to put it in the required form.
+- **Awareness outruns grounding.** Under insufficient tools, agents detect that
+  a task is impossible far more reliably than they identify *what* is missing.
+- **Redundancy breaks dependencies, not selection.** With many similar tools
+  the failure is I/O coupling and error propagation, not picking the wrong one.
+- **Prompting and AutoTB help, but do not close the gap.** They lift execution
+  success to 94.5% in the easier settings; persistent usage errors suggest
+  agents often know *when* to act without knowing *how* to use the tool.
+
+Radiology agents are no longer only conceptual demonstrations, but the distance
+from idealized orchestration to deployment is still real, and it depends as
+much on tool reliability and interface alignment as on the LLM core.
+
+---
+
 ## Contents
 
 - [Why two layers](#why-two-layers)
-- [What's in the box](#whats-in-the-box)
 - [Quick start](#quick-start)
 - [The synthetic layer](#the-synthetic-layer)
   - [Patient records](#patient-records), [Task types](#task-types), [Tool categories](#tool-categories), [Tool-set conditions](#tool-set-conditions)
@@ -32,9 +51,6 @@ agentic systems actually achieve on executable radiology tasks.
 - [Prompting strategies](#prompting-strategies)
 - [AutoTB](#autotb-automated-tool-building)
 - [The real-environment layer](#the-real-environment-layer)
-- [Metrics](#metrics)
-- [Reproducing the paper](#reproducing-the-paper)
-- [Repository layout](#repository-layout)
 - [Citation](#citation)
 
 ---
@@ -65,18 +81,6 @@ tool-performance ceiling by ~15% and fall to **0.327** on long-chain tasks.
 <div align="center"><img src="./assets/benchmark.png" alt="Benchmark statistics" width="92%"></div>
 
 <div align="center"><sub><b>a.</b> Patient sex across anatomical regions. <b>b.</b> 10 tool categories by 11 task types, checkmarks marking the tools each task needs. <b>c.</b> 24,200 QA pairs by task type. <b>d.</b> Tool counts across the eight simulated conditions.</sub></div>
-
----
-
-## What's in the box
-
-| | |
-|---|---|
-| **Data** | 2,200 clinician-verified synthetic patient records, 24,200 QA pairs, 165 real cases |
-| **Tools** | 10 simulated tool categories, 9 tool-set conditions, an executable pool for real cases |
-| **Agent core** | a three-phase prompt-driven workflow, 14 model aliases, 9 evaluation pipelines |
-| **AutoTB** | request verification (synthetic) and M³Builder-backed tool construction (real) |
-| **Metrics** | 14 agent-level metrics plus task-specific automatic metrics for real cases |
 
 ---
 
@@ -137,6 +141,17 @@ Every pipeline takes the same arguments:
 ```bash
 python EvalMetrics/multihop_performance.py \
     --logs Outputs/claude-sonnet-4.5/multiGeneral/logouts
+```
+
+### 5. Run the tests
+
+No credentials or GPU needed.
+
+```bash
+python tests/test_metrics.py          # 35 checks, every metric formula
+python tests/test_realenv.py          # 32 checks, the real-environment loop
+python tests/test_autotb_realloop.py  # 25 checks, AutoTB build/replan closure
+python tests/test_prompting.py        # 29 checks, strategy composition
 ```
 
 ---
@@ -353,6 +368,41 @@ clinical question, image, and reference annotation or report.
 All three also carry LLM ratings (GPT-5.2-Chat, Gemini-3.0-Pro, DeepSeek-R1)
 and blinded ratings from two expert radiologists.
 
+### Results
+
+Grounding is scored on 55 Chest Imagenome cases; diagnosis and report
+generation on 55 RadGenome-MRI cases each. All metrics are higher-is-better.
+LLM Rating averages three evaluators (GPT-5.2-Chat, Gemini-3.0-Pro,
+DeepSeek-R1); Human Rating averages two expert radiologists under blinded
+review.
+
+Columns 2-5 are organ / anomaly joint grounding, 6-9 diagnosis with grounding
+clues, 10-13 standard report generation.
+
+| Method | Dice | Jacc. | LLM | Human | Acc. | Jacc. | LLM | Human | RadGraph-F1 | RaTE | LLM | Human |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **General closed-source** | | | | | | | | | | | | |
+| GPT-4o | 0.467 | 0.305 | 2.455 | 2.127 | 0.418 | 0.305 | 2.727 | 2.818 | 0.103 | 0.328 | 2.927 | 2.382 |
+| o3 | 0.479 | 0.315 | 2.636 | 2.455 | 0.436 | 0.335 | 2.764 | 2.873 | 0.115 | 0.345 | 2.964 | 2.455 |
+| Gemini-3.0-Pro | 0.489 | 0.324 | 2.909 | 2.727 | 0.455 | 0.348 | 2.818 | 2.909 | 0.125 | 0.360 | 3.000 | 2.509 |
+| Claude-Sonnet-4.5 | 0.503 | 0.336 | **3.218** | **3.164** | **0.476** | **0.364** | 2.855 | 2.945 | 0.137 | **0.385** | 3.036 | 2.564 |
+| **General open-source** | | | | | | | | | | | | |
+| DeepSeek-R1 | 0.486 | 0.321 | 2.582 | 2.455 | 0.394 | 0.313 | 2.618 | 2.363 | 0.100 | 0.314 | 2.727 | **2.709** |
+| Llama-3.1-405B | 0.252 | 0.144 | 1.764 | 1.800 | 0.307 | 0.129 | 1.945 | 1.836 | 0.043 | 0.237 | 2.109 | 1.873 |
+| Qwen3-235B | 0.462 | 0.300 | 2.455 | 2.182 | 0.364 | 0.285 | 2.545 | 2.273 | 0.091 | 0.300 | 2.636 | 2.545 |
+| **Medical LLM** | | | | | | | | | | | | |
+| Meditron3-70B | 0.392 | 0.244 | 2.164 | 1.927 | 0.277 | 0.204 | 1.964 | 1.818 | 0.069 | 0.248 | 2.164 | 2.036 |
+| MedGemma-27B | 0.403 | 0.252 | 2.218 | 2.000 | 0.291 | 0.212 | 2.036 | 1.909 | 0.075 | 0.255 | 2.218 | 2.091 |
+| Baichuan-M3-235B | 0.413 | 0.260 | 2.273 | 2.073 | 0.309 | 0.225 | 2.109 | 1.964 | 0.082 | 0.265 | 2.291 | 2.182 |
+| **End-to-end medical VLM** | | | | | | | | | | | | |
+| Llava-Med | 0.110 | 0.058 | 1.636 | 1.800 | 0.295 | 0.089 | 2.036 | 1.818 | 0.007 | 0.138 | 1.533 | 1.845 |
+| RadFM | 0.122 | 0.065 | 1.709 | 1.855 | 0.309 | 0.105 | 2.091 | 1.909 | 0.015 | 0.150 | 1.600 | 1.909 |
+| MedDr | 0.140 | 0.075 | 1.782 | 1.909 | 0.327 | 0.125 | 2.145 | 2.000 | 0.025 | 0.165 | 1.727 | 2.000 |
+| **Medical agentic systems** | | | | | | | | | | | | |
+| MAM | 0.406 | 0.255 | 2.273 | 2.055 | 0.351 | 0.219 | 2.345 | 2.218 | 0.077 | 0.262 | 2.800 | 2.418 |
+| RadCouncil | 0.394 | 0.245 | 2.182 | 2.000 | 0.327 | 0.205 | 2.273 | 2.145 | 0.070 | 0.250 | 2.727 | 2.327 |
+| AgentClinic | **0.513** | **0.345** | 3.091 | 3.091 | 0.455 | 0.355 | **2.909** | **3.000** | **0.145** | 0.370 | **3.055** | 2.636 |
+
 The executable pool is 14 dataset-specific tool families × 3 subset-trained
 variants = **42 concrete tools**, built with M³Builder and supplemented with
 [nnU-Net](https://github.com/MIC-DKFZ/nnUNet) and RP3D-DM.
@@ -391,133 +441,6 @@ one deployable agent.
 
 ---
 
-## Metrics
-
-<div align="center"><img src="./assets/bottleneck.png" alt="Bottleneck analysis" width="94%"></div>
-
-| Group | Metric | Meaning |
-|---|---|---|
-| **Chain planning** | Plan / Exec / Cons Dist. (LD ↓) | Levenshtein distance between planned, executed, and ground-truth chains |
-| | FDR ↓ | Fraction of called tools the task did not require |
-| | TMA ↑ | Order-sensitive match against the ground-truth chain |
-| **Orchestration** | OTS ↑ | How close the selected tool ranks to the best available |
-| **I/O organizing** | ECR ↑ | Chains executed with no I/O, format, or runtime failure |
-| | PFSP ↑ | Partial progress achieved among failed cases |
-| **Response** | TCR ↑ | End-to-end task completion |
-| | THR ↑ | Final output matches the required response target |
-| | MHR ↑ | The key intermediate result was produced |
-| | BLEU / ROUGE / F1 ↑ | Lexical overlap with the reference |
-| **Unsolvability** | UAR ↑ | The agent recognized the task was impossible |
-| | UGR ↑ | It identified *what* was missing |
-| **Real cases** | Dice, Jaccard, Accuracy, RadGraph-F1, RaTE, LLM & Human Rating | Task-specific quality |
-| **AutoTB** | Trigger Rate, Execution Success Rate, Avg Build Time | Tool construction |
-
-All 14 are implemented as pure functions in
-[`EvalPlat/EvalMetrics/metrics.py`](EvalPlat/EvalMetrics/metrics.py), each
-docstring naming the appendix formula it mirrors, each covered by a test with
-a hand-worked case.
-
-The gap between UAR and UGR, and between TMA and ECR, is where the paper's
-central claim lives: **agents plan well and execute badly**. Claude-Sonnet-4.5
-keeps TMA at 0.617 under high redundancy while ECR falls from 0.856 to 0.425
-and PFSP from 0.822 to 0.318.
-
-<div align="center"><img src="./assets/token_usage.png" alt="Token consumption" width="52%"></div>
-
----
-
-## Reproducing the paper
-
-| Script | Condition | Paper result |
-|---|---|---|
-| `EvalPipeline_multihop_general.py` | Baseline | Table 1, appendix baseline |
-| `EvalPipeline_singlehop_general.py` | Baseline, single-hop | appendix |
-| `EvalPipeline_multihop_IO.py` | Redundant, regular | Table 2, Fig. 4c |
-| `EvalPipeline_multihop_IO_large.py` | Redundant, medium | Table 2, Fig. 4c |
-| `EvalPipeline_multihop_IO_scale.py` | Redundant, high | Table 2, Fig. 4c |
-| `EvalPipeline_multihop_denyl1.py` | Insufficient config1 | Fig. 4b, AutoTB |
-| `EvalPipeline_multihop_denyl2.py` | Insufficient config2 | Fig. 4b, AutoTB |
-| `EvalPipeline_multihop_denyl3.py` | Insufficient config3 | Fig. 4b, AutoTB |
-| `EvalPipeline_multihop_performance.py` | Differentiated | Fig. 4a |
-
-Each `EvalMetrics/` script scores the matching pipeline's logs.
-
-**Models.** Table 1 and Table 4 report Claude-Sonnet-4.5, GPT-5.2-Chat, o3,
-Gemini-3.0-Pro, DeepSeek-R1, Qwen3-235B, and GPT-4o. Aliases for all of them,
-plus the arXiv-v1 models, are in
-[`EvalPlat/Configs/models.yaml`](EvalPlat/Configs/models.yaml). Because model
-versions move quickly, each entry records the exact provider model id and
-which table it backs.
-
-**Data.** The 110-case subset ships here; the full 2,200-record release is on
-[HuggingFace](https://huggingface.co/datasets/QiaoyuZheng/RadABench-Data).
-See [`EvalPlat/Data/README.md`](EvalPlat/Data/README.md) for which data backs
-which table, and [`EvalPlat/DataPipeline/`](EvalPlat/DataPipeline) for how the
-synthetic layer is constructed. The generation prompt is published verbatim,
-and re-parsing the raw output reproduces the shipped subset byte for byte.
-
----
-
-## Repository layout
-
-```
-RadABench/
-├── assets/                     figures used in this README
-├── tests/                      unit and integration tests
-├── scripts/
-│   └── purge_secrets_from_history.sh
-├── .env.example                credential template, copy to .env
-└── EvalPlat/
-    ├── Configs/models.yaml     14 model aliases, endpoints, paper references
-    ├── Data/                   110-case evaluation subset + provenance
-    ├── DataPipeline/           how the synthetic layer is built
-    ├── ToolSets/               9 simulated tool pools, one per condition
-    ├── Toolkit/                reference implementations of the 10 categories
-    ├── Utils/
-    │   ├── llm_client.py       one chat interface for every backend
-    │   ├── tooluse.py          tool cards → ToolManager_IO
-    │   ├── utils.py            prompts, memory bank, execution, logging
-    │   └── entity_dict.json    radiological entity vocabulary
-    ├── Prompting/              the four prompting strategies
-    ├── AutoTB/                 request verification + M³Builder construction
-    ├── RealEnv/                165 real cases, executable tools, real metrics
-    ├── EvalPipeline_*.py       9 evaluation pipelines, one per condition
-    └── EvalMetrics/            14 agent-level metrics + per-condition scoring
-```
-
-Run the tests with no credentials and no GPU:
-
-```bash
-python tests/test_metrics.py          # 35 checks, every metric formula
-python tests/test_realenv.py          # 32 checks, the real-environment loop
-python tests/test_autotb_realloop.py  # 25 checks, AutoTB build/replan closure
-python tests/test_prompting.py        # 29 checks, strategy composition
-```
-
----
-
-## What we found
-
-- **The bottleneck is execution fidelity, not planning.** Agents form plausible
-  plans and pick competitive tools, then lose the thread mid-chain. Chain
-  distances stay small as difficulty grows while ECR and PFSP collapse.
-- **Tool-level competence does not become task success.** Agents hit
-  intermediate milestones and still fail to decide which result answers the
-  question, or to put it in the required form.
-- **Awareness outruns grounding.** Under insufficient tools, agents detect that
-  a task is impossible far more reliably than they identify *what* is missing.
-- **Redundancy breaks dependencies, not selection.** With many similar tools
-  the failure is I/O coupling and error propagation, not picking the wrong one.
-- **Prompting and AutoTB help, but do not close the gap.** They lift execution
-  success to 94.5% in the easier settings; persistent usage errors suggest
-  agents often know *when* to act without knowing *how* to use the tool.
-
-Radiology agents are no longer only conceptual demonstrations, but the distance
-from idealized orchestration to deployment is still real, and it depends as
-much on tool reliability and interface alignment as on the LLM core.
-
----
-
 ## Citation
 
 ```bibtex
@@ -539,14 +462,6 @@ If you use the AutoTB layer, please also cite M³Builder:
   year    = {2025}
 }
 ```
-
-## Acknowledgements
-
-Real cases come from [Chest Imagenome](https://physionet.org/content/chest-imagenome/)
-and RadGenome-BrainMRI. The executable tool pool builds on
-[M³Builder](https://github.com/MAGIC-AI4Med/M3Builder),
-[nnU-Net](https://github.com/MIC-DKFZ/nnUNet), and RP3D-DM. This work is
-supported by the National Natural Science Foundation of China (No. 24Z031503678).
 
 ## License
 
